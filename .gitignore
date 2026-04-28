@@ -1,4 +1,8 @@
 .idea/
 .vscode/
+.gradle/
+build/
+run/
+logs/
 .DS_Store
 Thumbs.db
