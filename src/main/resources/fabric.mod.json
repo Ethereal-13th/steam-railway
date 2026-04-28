@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "steam_railway",
+	"version": "${version}",
+	"name": "Steam Railway",
+	"description": "A Fabric mod prototype for player-built trains and living railways.",
+	"authors": [
+		"Ethereal-13th"
+	],
+	"contact": {
+		"sources": "https://github.com/Ethereal-13th/steam-railway"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.steamrailway.SteamRailwayMod"
+		],
+		"client": [
+			"dev.steamrailway.SteamRailwayClientMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

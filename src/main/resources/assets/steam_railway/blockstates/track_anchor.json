@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "steam_railway:block/track_anchor",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "steam_railway:block/track_anchor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "steam_railway:block/track_anchor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "steam_railway:block/track_anchor",
+      "y": 270
+    }
+  }
+}
