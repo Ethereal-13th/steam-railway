@@ -1,6 +1,7 @@
 package dev.steamrailway;
 
 import dev.steamrailway.debug.DebugPathRenderer;
+import dev.steamrailway.rail.RailPlacementSessionService;
 import dev.steamrailway.registry.SRBlocks;
 import dev.steamrailway.registry.SRCommands;
 import dev.steamrailway.registry.SREntities;
@@ -25,6 +26,7 @@ public final class SteamRailwayMod implements ModInitializer {
 		SREntities.register();
 		SRItems.register();
 		SRCommands.register();
+		RailPlacementSessionService.register();
 		DebugPathRenderer.register();
 		TrainRuntimeService.register();
 		LOGGER.info("steam_railway initialized");
