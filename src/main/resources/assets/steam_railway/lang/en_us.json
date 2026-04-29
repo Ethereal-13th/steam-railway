@@ -1,6 +1,8 @@
 {
   "block.steam_railway.track_anchor": "Track Anchor",
+  "block.steam_railway.standard_rail": "Standard Rail",
   "item.steam_railway.track_anchor": "Track Anchor",
+  "item.steam_railway.standard_rail": "Standard Rail",
   "command.steam_railway.debug.ping": "Steam Railway debug ping OK.",
   "command.steam_railway.anchor.bind.look_at": "Look at a track anchor block first.",
   "command.steam_railway.anchor.bind.blank": "Anchor name cannot be blank.",

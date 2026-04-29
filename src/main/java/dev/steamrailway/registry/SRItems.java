@@ -13,20 +13,22 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public final class SRItems {
-	public static final Item TRACK_ANCHOR = registerBlockItem("track_anchor", SRBlocks.TRACK_ANCHOR, settings("track_anchor"));
+	public static final Item TRACK_ANCHOR = registerBlockItem("track_anchor", SRBlocks.TRACK_ANCHOR, blockItemSettings("track_anchor"));
+	public static final Item STANDARD_RAIL = registerBlockItem("standard_rail", SRBlocks.STANDARD_RAIL, blockItemSettings("standard_rail"));
 
 	private SRItems() {
 	}
 
 	public static void register() {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> entries.add(TRACK_ANCHOR));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(STANDARD_RAIL));
 	}
 
 	private static Item registerBlockItem(String path, Block block, Item.Settings settings) {
 		return Registry.register(Registries.ITEM, SteamRailwayMod.id(path), new BlockItem(block, settings));
 	}
 
-	private static Item.Settings settings(String path) {
+	private static Item.Settings blockItemSettings(String path) {
 		Identifier id = SteamRailwayMod.id(path);
 		return new Item.Settings()
 			.useBlockPrefixedTranslationKey()

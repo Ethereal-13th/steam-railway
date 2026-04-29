@@ -1,6 +1,8 @@
 {
   "block.steam_railway.track_anchor": "轨道锚点",
+  "block.steam_railway.standard_rail": "标准轨道",
   "item.steam_railway.track_anchor": "轨道锚点",
+  "item.steam_railway.standard_rail": "标准轨道",
   "command.steam_railway.debug.ping": "蒸汽铁路调试连通正常。",
   "command.steam_railway.anchor.bind.look_at": "请先把准星对准一个轨道锚点方块。",
   "command.steam_railway.anchor.bind.blank": "锚点名称不能为空。",
