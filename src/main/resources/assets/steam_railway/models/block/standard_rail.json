@@ -1,26 +1,62 @@
 {
+  "ambientocclusion": false,
   "textures": {
-    "particle": "minecraft:block/deepslate_tiles",
-    "base": "minecraft:block/deepslate_tiles",
-    "side": "minecraft:block/stone",
-    "rail": "minecraft:block/iron_block"
+    "particle": "steam_railway:block/rail_tie",
+    "rail": "steam_railway:block/rail_metal",
+    "tie": "steam_railway:block/rail_tie"
   },
   "elements": [
     {
-      "from": [0, 0, 0],
-      "to": [16, 2, 16],
+      "from": [-10.5, 0.0, 2.4],
+      "to": [26.5, 2.1, 5.6],
       "faces": {
-        "down": { "texture": "#base" },
-        "up": { "texture": "#base" },
-        "north": { "texture": "#side" },
-        "south": { "texture": "#side" },
-        "west": { "texture": "#side" },
-        "east": { "texture": "#side" }
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
       }
     },
     {
-      "from": [3, 2, 0],
-      "to": [5, 4, 16],
+      "from": [-10.5, 0.0, 10.4],
+      "to": [26.5, 2.1, 13.6],
+      "faces": {
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
+      }
+    },
+    {
+      "from": [-7.8, 1.8, 0.0],
+      "to": [-4.8, 2.6, 16.0],
+      "faces": {
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
+      }
+    },
+    {
+      "from": [20.2, 1.8, 0.0],
+      "to": [23.2, 2.6, 16.0],
+      "faces": {
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
+      }
+    },
+    {
+      "from": [-7.2, 2.6, 0.0],
+      "to": [-5.5, 4.8, 16.0],
       "faces": {
         "down": { "texture": "#rail" },
         "up": { "texture": "#rail" },
@@ -31,8 +67,8 @@
       }
     },
     {
-      "from": [11, 2, 0],
-      "to": [13, 4, 16],
+      "from": [20.8, 2.6, 0.0],
+      "to": [22.5, 4.8, 16.0],
       "faces": {
         "down": { "texture": "#rail" },
         "up": { "texture": "#rail" },

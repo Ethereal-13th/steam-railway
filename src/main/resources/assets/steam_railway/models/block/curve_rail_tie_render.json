@@ -1,0 +1,33 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "steam_railway:block/rail_tie",
+    "tie": "steam_railway:block/rail_tie"
+  },
+  "elements": [
+    {
+      "from": [-10.5, 0.0, 2.4],
+      "to": [26.5, 2.1, 5.6],
+      "faces": {
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
+      }
+    },
+    {
+      "from": [-10.5, 0.0, 10.4],
+      "to": [26.5, 2.1, 13.6],
+      "faces": {
+        "down": { "texture": "#tie" },
+        "up": { "texture": "#tie" },
+        "north": { "texture": "#tie" },
+        "south": { "texture": "#tie" },
+        "west": { "texture": "#tie" },
+        "east": { "texture": "#tie" }
+      }
+    }
+  ]
+}

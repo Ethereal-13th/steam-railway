@@ -84,9 +84,36 @@ public final class RailNetwork {
 		return edges.get(edgeId);
 	}
 
+	public RailNode createPlacedNode(ServerWorld world, BlockPos pos) {
+		String nodeId = nextPlacedNodeId();
+		Vec3d worldPos = RailGeometry.worldPosition(pos);
+		RailNode node = new RailNode(
+			nodeId,
+			nodeId,
+			world.getRegistryKey().getValue().toString(),
+			pos.getX(),
+			pos.getY(),
+			pos.getZ(),
+			worldPos.x,
+			worldPos.y,
+			worldPos.z);
+
+		nodes.put(nodeId, node);
+		version++;
+		return node;
+	}
+
 	public void putEdge(RailEdge edge) {
 		edges.put(edge.id(), edge);
 		version++;
+	}
+
+	public RailEdge removeEdge(String edgeId) {
+		RailEdge removed = edges.remove(edgeId);
+		if (removed != null) {
+			version++;
+		}
+		return removed;
 	}
 
 	public String nextEdgeId() {
@@ -99,6 +126,17 @@ public final class RailNetwork {
 			last = edgeId;
 		}
 		return last;
+	}
+
+	private String nextPlacedNodeId() {
+		int index = 1;
+		while (true) {
+			String candidate = String.format(Locale.ROOT, "placed_node_%04d", index);
+			if (!nodes.containsKey(candidate)) {
+				return candidate;
+			}
+			index++;
+		}
 	}
 
 	private static String normalizeNodeKey(String requestedName) {

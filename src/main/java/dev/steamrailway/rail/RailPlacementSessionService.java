@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.Map;
@@ -22,11 +23,24 @@ public final class RailPlacementSessionService {
 		ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((player, origin, destination) -> clear(player.getUuid()));
 	}
 
-	public static void setStart(ServerPlayerEntity player, BlockPos startPos) {
+	public static void setStart(ServerPlayerEntity player, BlockPos startPos, Direction startFacing, boolean startFacingLocked) {
 		SESSIONS.put(player.getUuid(), new RailPlacementSession(
 			player.getUuid(),
 			player.getEntityWorld().getRegistryKey().getValue().toString(),
-			startPos.toImmutable()));
+			startPos.toImmutable(),
+			startFacing,
+			startFacingLocked,
+			RailPlacementMode.NORMAL));
+	}
+
+	public static void updateMode(ServerPlayerEntity player, RailPlacementMode mode) {
+		SESSIONS.computeIfPresent(player.getUuid(), (uuid, session) -> new RailPlacementSession(
+			session.playerUuid(),
+			session.dimension(),
+			session.startPos(),
+			session.startFacing(),
+			session.startFacingLocked(),
+			mode));
 	}
 
 	public static Optional<RailPlacementSession> get(ServerPlayerEntity player) {
@@ -41,6 +55,13 @@ public final class RailPlacementSessionService {
 		SESSIONS.clear();
 	}
 
-	public record RailPlacementSession(UUID playerUuid, String dimension, BlockPos startPos) {
+	public record RailPlacementSession(
+		UUID playerUuid,
+		String dimension,
+		BlockPos startPos,
+		Direction startFacing,
+		boolean startFacingLocked,
+		RailPlacementMode mode
+	) {
 	}
 }

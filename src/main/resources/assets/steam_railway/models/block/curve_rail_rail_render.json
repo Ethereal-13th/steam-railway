@@ -1,0 +1,33 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "steam_railway:block/rail_metal",
+    "rail": "steam_railway:block/rail_metal"
+  },
+  "elements": [
+    {
+      "from": [-7.2, 2.6, 0.0],
+      "to": [-5.5, 4.8, 16.0],
+      "faces": {
+        "down": { "texture": "#rail" },
+        "up": { "texture": "#rail" },
+        "north": { "texture": "#rail" },
+        "south": { "texture": "#rail" },
+        "west": { "texture": "#rail" },
+        "east": { "texture": "#rail" }
+      }
+    },
+    {
+      "from": [20.8, 2.6, 0.0],
+      "to": [22.5, 4.8, 16.0],
+      "faces": {
+        "down": { "texture": "#rail" },
+        "up": { "texture": "#rail" },
+        "north": { "texture": "#rail" },
+        "south": { "texture": "#rail" },
+        "west": { "texture": "#rail" },
+        "east": { "texture": "#rail" }
+      }
+    }
+  ]
+}

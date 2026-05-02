@@ -1,6 +1,7 @@
 package dev.steamrailway.registry;
 
 import dev.steamrailway.SteamRailwayMod;
+import dev.steamrailway.rail.CurveRailSupportBlock;
 import dev.steamrailway.rail.StandardRailBlock;
 import dev.steamrailway.rail.TrackAnchorBlock;
 import net.minecraft.block.AbstractBlock;
@@ -16,6 +17,12 @@ public final class SRBlocks {
 		new TrackAnchorBlock(settings("track_anchor").strength(1.5F)));
 	public static final Block STANDARD_RAIL = register("standard_rail",
 		new StandardRailBlock(settings("standard_rail").strength(1.0F).nonOpaque()));
+	public static final Block CURVE_RAIL_SUPPORT = register("curve_rail_support",
+		new CurveRailSupportBlock(settings("curve_rail_support").strength(1.0F).nonOpaque().dropsNothing()));
+	public static final Block CURVE_RAIL_RAIL_RENDER = register("curve_rail_rail_render",
+		new Block(settings("curve_rail_rail_render").nonOpaque().dropsNothing()));
+	public static final Block CURVE_RAIL_TIE_RENDER = register("curve_rail_tie_render",
+		new Block(settings("curve_rail_tie_render").nonOpaque().dropsNothing()));
 
 	private SRBlocks() {
 	}

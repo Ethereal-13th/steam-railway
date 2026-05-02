@@ -1,15 +1,12 @@
 package dev.steamrailway.rail;
-
-import dev.steamrailway.registry.SRBlocks;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+
+import java.util.Optional;
 
 public final class RailPlacementToolItem extends Item {
 	public RailPlacementToolItem(Settings settings) {
@@ -22,6 +19,7 @@ public final class RailPlacementToolItem extends Item {
 			return ActionResult.PASS;
 		}
 		if (context.getWorld().isClient()) {
+			RailPlacementClientHooks.handleUse(context);
 			return ActionResult.SUCCESS;
 		}
 
@@ -32,37 +30,34 @@ public final class RailPlacementToolItem extends Item {
 			return ActionResult.SUCCESS;
 		}
 
-		BlockPos startPos = resolveStartPos(context);
-		if (startPos == null) {
-			player.sendMessage(Text.translatable("item.steam_railway.rail_placement_tool.invalid_start"), true);
+		Optional<RailPlacementSessionService.RailPlacementSession> session = RailPlacementSessionService.get(player);
+
+		RailPlacementTargetResolver.RailPlacementTarget target = RailPlacementTargetResolver.resolveTarget(
+			context.getWorld(),
+			context.getBlockPos(),
+			context.getSide(),
+			context.getHorizontalPlayerFacing()
+		).orElse(null);
+		if (target == null) {
+			String messageKey = session.isPresent()
+				? "item.steam_railway.rail_placement_tool.invalid_end"
+				: "item.steam_railway.rail_placement_tool.invalid_start";
+			player.sendMessage(Text.translatable(messageKey), true);
 			return ActionResult.FAIL;
 		}
 
-		RailPlacementSessionService.setStart(player, startPos);
+		if (session.isPresent()) {
+			RailPlacementService.PlacementResult result = RailPlacementService.tryPlace(player, session.get(), target);
+			if (result.clearSelection()) {
+				RailPlacementSessionService.clear(player.getUuid());
+			}
+			player.sendMessage(Text.translatable(result.messageKey(), result.messageArgs()), true);
+			return result.success() ? ActionResult.SUCCESS : ActionResult.FAIL;
+		}
+
+		BlockPos startPos = target.pos();
+		RailPlacementSessionService.setStart(player, startPos, target.facing(), target.lockedFacing());
 		player.sendMessage(Text.translatable("item.steam_railway.rail_placement_tool.start_set", startPos.toShortString()), true);
 		return ActionResult.SUCCESS;
-	}
-
-	private BlockPos resolveStartPos(ItemUsageContext context) {
-		World world = context.getWorld();
-		BlockPos clickedPos = context.getBlockPos();
-		BlockState clickedState = world.getBlockState(clickedPos);
-
-		if (clickedState.isOf(SRBlocks.STANDARD_RAIL)) {
-			return clickedPos;
-		}
-
-		if (context.getSide() != Direction.UP) {
-			return null;
-		}
-
-		BlockPos targetPos = clickedPos.up();
-		BlockState targetState = world.getBlockState(targetPos);
-		BlockState railState = SRBlocks.STANDARD_RAIL.getDefaultState().with(StandardRailBlock.FACING, context.getHorizontalPlayerFacing());
-		if (!targetState.isReplaceable() || !railState.canPlaceAt(world, targetPos)) {
-			return null;
-		}
-
-		return targetPos;
 	}
 }

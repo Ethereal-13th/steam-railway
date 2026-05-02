@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "steam_railway:block/curve_rail_rail_render"
+    }
+  }
+}

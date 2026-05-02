@@ -2,10 +2,12 @@ package dev.steamrailway;
 
 import dev.steamrailway.debug.DebugPathRenderer;
 import dev.steamrailway.rail.RailPlacementSessionService;
+import dev.steamrailway.registry.SRBlockEntities;
 import dev.steamrailway.registry.SRBlocks;
 import dev.steamrailway.registry.SRCommands;
 import dev.steamrailway.registry.SREntities;
 import dev.steamrailway.registry.SRItems;
+import dev.steamrailway.registry.SRPackets;
 import dev.steamrailway.train.TrainRuntimeService;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -23,8 +25,10 @@ public final class SteamRailwayMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		SRBlocks.register();
+		SRBlockEntities.register();
 		SREntities.register();
 		SRItems.register();
+		SRPackets.register();
 		SRCommands.register();
 		RailPlacementSessionService.register();
 		DebugPathRenderer.register();
